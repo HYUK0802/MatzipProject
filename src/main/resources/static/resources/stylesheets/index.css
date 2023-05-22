@@ -1,0 +1,725 @@
+@charset "UTF-8";
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+a:link, a:visited{
+    color: #0288d1;
+    text-decoration: none;
+}
+a:link:hover, a:visited:hover{
+    text-decoration: underline;
+}
+h1,h2,h3,h4,h5,h6{
+    font: inherit;
+    margin-block: unset;
+    margin-inline: unset;
+}
+:root {
+    --heading-height: 2.5rem;
+}
+input, select, label  {
+    appearance: none;
+    background-color: inherit;
+    border:unset;
+    color: inherit;
+    font: inherit;
+    margin: unset;
+    outline: none;
+    padding: unset;
+}
+ol, ul {
+    list-style-type: none;
+    margin-block: unset;
+    margin-inline: unset;
+    padding-block: unset;
+    padding-inline: unset;
+}
+html {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fafafa;
+    color: #212121;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: unset;
+    overflow: hidden;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+._object-input {
+    background-color: #fafafa;
+    border: 0.0625rem solid #bdbdbd;
+    border-radius: 0.25rem;
+    color: #818181;
+    font: inherit;
+    padding: 0.625rem 0.875rem;
+}
+._object-input:hover{
+    border: 0.0625rem solid #d0d0d0;
+    color: #515151;
+}
+._object-input:active,
+._object-input:focus {
+    border: 0.0626rem solid #c0c0c0;
+    color: #212121;
+}
+
+._object-input._invalid {
+    border: 0.0625rem solid #ef5350;
+}
+._object-input:disabled {
+    background-color: #eeeeee;
+    border: 0.0625rem solid #e0e0e0;
+}
+
+._object-button {
+    background-color: #e0e0e0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.625rem 0.875rem;
+}
+._object-button._color-concept {
+    background-color: #ffc72b;
+}
+._object-button:hover{
+    filter: brightness(95%);
+}
+._object-button:active{
+    filter: brightness(90%);
+}
+._object-button:disabled {
+    background-color: #eeeeee;
+    color: #bdbdbd;
+    cursor: default;
+    filter: none;
+}
+
+._object-check-wrapper {
+    cursor: pointer;
+    user-select: none;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+._object-check-wrapper >._check-input{
+    display: none;
+}
+._object-check-wrapper >._check-toggle {
+    width: 1.25rem;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: 92.5%;
+    background-repeat: no-repeat;
+    border: 0.125rem solid  #bdbdbd;
+    border-radius: 0.25rem;
+    margin-right: 0.3rem;
+}
+
+._object-check-wrapper >
+._check-input:checked + ._check-toggle {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfUlEQVR4nO2SQQ6AIAwE+YREn4gnku4e+KYcfA6GRC9qjIYaPXTOME2365xhPEFEPIDwmpxkJllIjqrylFIHYFrlM4De5O6/sQAItRE325Kv3h6o9br6KC3ys9VjjIN65mdDkvZB91GwJZabmxT1Ku6GzOryDRHxarEYn7AAeDynNQhiJrQAAAAASUVORK5CYII=");
+}
+#loading{
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffc72b;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transition-duration: 250ms;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    user-select: none;
+    z-index: 9;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+#loading.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+#loading > .logo {
+    width: 7.5rem;
+    animation-name: cover-logo-animation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+#cover {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(0.5rem);
+    background-color: #21212160;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transition-duration: 250ms;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    z-index: 8;
+}
+#cover.visible{
+    opacity: 1;
+    pointer-events: all;
+}
+
+#menu {
+    width: 4rem;
+    border-right: 0.0625rem solid #eeeeee;
+    box-sizing: border-box;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#menu > .item{
+    height: 4rem;
+    border-bottom: 0.0625rem solid #eeeeee;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+#menu >.item.logo-container {
+    background-color: #ffc72b;
+}
+#menu > .item.logo-container >.logo {
+    width: 62.5%;
+}
+#menu > .item.link {
+    cursor: pointer;
+    user-select: none;
+}
+#menu > .item.link:hover {
+    background-color: #eeeeee;
+}
+#menu > .item.link.selected {
+    background-color: #eeeeee;
+    cursor: default;
+    pointer-events: none;
+
+}
+#menu >.item.link > .icon {
+    height: 1.25rem;
+    margin-bottom: 0.3rem;
+}
+#menu > .item.link > .text {
+    font-size: 0.8rem;
+}
+#menu > .stretch {
+    border-bottom: 0.0625rem solid #eeeeee;
+    flex: 1;
+}
+/*박스 만들기 */
+#loginForm, #recoverForm {
+    top: 50%;
+    left: 50%;
+    width: 25rem;
+    max-height: calc(100vh - 2rem);
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem 0.0625rem #21212145;
+    box-sizing: border-box;
+    overflow: hidden auto;
+    opacity: 0;
+    padding: 2.5rem;
+    pointer-events: none;
+    position: fixed;
+    transform: scale(95%) translate(-50%, -50%);
+    transition-duration: 250ms;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+    z-index: 9;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#loginForm.visible, #recoverForm.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(100%) translate(-50%, -50%);
+}
+
+
+
+#loginForm > * + *,
+#recoverForm > * + * {
+    margin-top: 0.5rem;
+}
+
+#loginForm >.warning, #recoverForm >.warning {
+    max-height: 0;
+    color: #ef5350;
+    font-size: 0.9rem;
+    margin: unset;
+    overflow: hidden;
+    padding-top: 0;
+    transition-duration: 500ms;
+    transition-property: max-height, padding-top;
+    transition-timing-function: ease;
+}
+#loginForm > .warning.visible,
+#recoverForm > .warning.visible {
+    max-height: 3rem;
+    padding-top: 0.5rem;
+}
+
+#loginForm > .title,
+#recoverForm >.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#loginForm >.label,
+#recoverForm > .label {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#loginForm > .button-container,
+#recoverForm >.button-container {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+#loginForm > .menu {
+    margin-top: 1.5rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#loginForm > .menu >.item {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#loginForm > .menu >.item + .item {
+    margin-top: 0.125rem;
+}
+
+#registerForm {
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    perspective: 100vw;
+    pointer-events: none;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    transition-duration: 375ms;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    z-index: 8;
+}
+
+#registerForm.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#registerForm > .section {
+    top: 50%;
+    left: 50%;
+    width: 30rem;
+    max-height: calc(100vh - 2rem);
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem 0.0625rem #21212145;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: hidden auto;
+    padding: 2.5rem;
+    pointer-events: none;
+    position: absolute;
+    transform: rotateY(-15deg) translate(calc(-50% + 3rem), -50%);
+    transition-duration: 500ms;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#registerForm >.section .warning {
+    max-height: 0;
+    color: #ef5350;
+    font-size: 0.9rem;
+    margin: unset;
+    overflow: hidden;
+    padding-top: 0;
+    transition-duration: 500ms;
+    transition-property: max-height, padding-top;
+    transition-timing-function: ease;
+}
+
+#registerForm > .section .warning.visible {
+    max-height: 3rem;
+    padding-top: 0.5rem;
+}
+
+#registerForm >.spec-container > * + * {
+    margin-top: 0.5rem;
+}
+
+#registerForm > .section > .title-container {
+    margin-bottom: 1.5rem;
+
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#registerForm > .section > .title-container > .title {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+#registerForm > .section > .title-container > .subtitle {
+    color: #818181;
+}
+
+#registerForm > .section > .button-container {
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-auto-flow: column;
+    margin-top: 1rem;
+}
+
+#registerForm.step-1 >.section.step-1 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) translate(-50%, -50%);
+}
+
+#registerForm.step-2 > .section.step-1 {
+    transform: rotateY(15deg) translate(calc(-50% - 3rem), -50%);
+}
+#registerForm.step-2 >.section.step-2 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) translate(-50%, -50%);
+}
+#registerForm.step-2.working >.section.step-2 {
+    opacity: 0.5;
+    pointer-events: none;
+    transform: rotateY(-10deg) translate(-50%, -50%);
+}
+#registerForm.step-3 > .section.step-2 {
+    transform: rotateY(15deg) translate(calc(-50% - 3rem), -50%);
+}
+#registerForm.step-3 >.section.step-3 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) translate(-50%, -50%);
+}
+
+#registerForm >.section.step-1 > .content-container {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#registerForm > .section.step-1 >.content-container > * + * {
+    margin-top: 0.5rem;
+}
+#registerForm >.section.step-1 > .content-container >.label {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#registerForm >.section.step-1 > .content-container >.term-container >.term {
+    height: 7.5rem;
+    resize: none;
+}
+
+#registerForm >.section.step-1 >.content-container >.term-container >.term {
+    height: 7.5rem;
+}
+#registerForm > .section.step-2 >.content-container {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#registerForm > .section.step-2 >.content-container > .label {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#registerForm > .section.step-2 >.content-container > * + * {
+    margin-top: 0.5rem;
+}
+
+#registerForm > .section.step-2 >.content-container > .label >._object-input {
+    flex: 1;
+
+}
+#registerForm > .section.step-2 >.content-container > .label > ._object-button {
+    margin-left: 0.5rem;
+}
+
+#recoverForm > .option-container {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+}
+#recoverForm > .option-container > .label {
+    border: 0.0625rem solid #e0e0e0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#recoverForm > .option-container > .label:has(> .option:checked) {
+    background-color: #0288d1;
+    border: 0.0625rem solid #0288d1;
+    color: #ffffff;
+}
+#recoverForm > .email-container,
+#recoverForm > .password-container {
+    display: none;
+}
+
+#recoverForm >.option-container:has(> .label.email > .option:checked) ~ .email-container {
+    display: block;
+}
+#recoverForm >.option-container:has(> .label.password > .option:checked) ~ .password-container {
+    display: block;
+}
+#recoverForm >.field {
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#recoverForm >.field > * + * {
+    margin-top: 0.5rem;
+}
+#recoverForm > .field > .label {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#recoverForm > .field >.label >._object-input {
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+    margin-right: 0.5rem;
+}
+
+
+#list {
+    width: 20rem;
+    border-right: 0.0625rem solid #e0e0e0;
+    box-sizing: border-box;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+#list > .search-form {
+    padding: 1.25rem 1.25rem 0 1.25rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#list > .search-form > .label {
+    position: relative;
+}
+#list > .search-form > .label > .icon {
+    top: 50%;
+    left: 0.75rem;
+    width: 1.5rem;
+    pointer-events: none;
+    position: absolute;
+    transform: translateY(-50%);
+}
+#list > .search-form > .label >.input {
+    width: 100%;
+    background-color: #fafafa;
+    border: 0.125rem solid #ffc72b;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    color: #212121;
+    font: inherit;
+    outline: none;
+    padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+}
+#list > .address-container{
+    background-color: #eeeeee;
+    border-radius: 0.25rem;
+    margin: 0.5rem 1.25rem 1.25rem 1.25rem;
+    padding: 0.75rem 1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#list > .address-container > .text {
+    color: #424242;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+#list > .address-container > .text + .text {
+    margin-left: 0.375rem
+}
+#list > .list {
+    border-top: 0.0626rem solid #e0e0e0;
+    overflow: hidden scroll;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#list > .list::-webkit-scrollbar {
+    width: 0.375rem;
+    background-color: #fafafa;
+}
+#list > .list::-webkit-scrollbar-thumb{
+    background-color: #bdbdbd;
+}
+#list > .list >.item {
+    border-bottom: 0.0625rem solid #e0e0e0;
+    cursor: pointer;
+    padding: 1.1rem 0.875rem 1.1rem 1.25rem;
+
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#list > .list >.item:hover {
+    background-color: #eeeeee;
+}
+#list > .list >.item >.spec-container {
+    flex:1;
+    margin-right: 0.75rem;
+
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#list > .list >.item >. spec-container > * + * {
+    margin-top: 0.25rem;
+}
+#list > .list >.item >. spec-container > .name-container{
+    margin-bottom: 0.25rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#list > .list >.item >. spec-container > .name-container >.name{
+    color: #039be5;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+#list > .list >.item >. spec-container > .name-container >.category {
+    color: #757575;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+#list > .list >.item >. spec-container >.op-container {
+    font-size: 0.95rem;
+}
+#list > .list >.item >. spec-container >.op-container > .op-time::before {
+    top: -0.1rem;
+    width: 0.25rem;
+    height: 0.25rem;
+    background-color: #bdbdbd;
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    margin: 0 0.25rem 0 0.15rem;
+    position: relative;
+}
+#list > .list >.item >. spec-container >.address-container{
+    font-size: 0.95rem;
+}
+
+#list > .list >.item > .image-container{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    position: relative;
+
+}
+
+#list > .list >.item > .image-container >.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#list > .list >.item > .image-container > .count {
+    right: 0;
+    bottom: 0;
+    background-color: #21212160;
+    color: #fafafa;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.375rem;
+    pointer-events: none;
+    position: absolute;
+}
+#detail{
+
+}
+#map{
+    flex: 1;
+
+}
+@keyframes  cover-logo-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+
+}

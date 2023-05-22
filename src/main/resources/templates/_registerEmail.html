@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>[맛집 회원가입] 이메일 인증</title>
+</head>
+<body>
+<div style="background-color: #ffc72b; font-size: 24px; margin-bottom: 20px; padding: 20px 32px;">맛집 회원가입</div>
+<div style="background-color: #eeeeee; font-size: 14px; line-height: 150%; padding: 12px 32px; text-align: center">
+    <p style="font-size: 32px; font-weight: lighter; text-align: justify">안녕하세요?</p>
+    <p style="text-align:justify">맛집 회원가입을 마치기 위해 아래 '인증하기' 버튼을 클릭하거나, 링크를 복사하여 주소창에 붙여넣어 주세요. 만약, 직접 회원가입한게 아니라면, 절대로 인증하지 마시고 해당 이메일을 폐기해 주시기 바랍니다.</p>
+    <a th:href="${url}" style="background-color: #ffc72b; border-radius: 4px; color: #000000; display: inline-block; margin-bottom: 16px; padding: 8px 12px; text-decoration: none;">인증하기</a>
+    <p style="text-align: justify">위 버튼이 작동하지 않는다면, 아래 링크를 복사하여 주소창에 붙여넣기 해주세요</p>
+    <code style="background-color: #e0e0e0; display: block; padding: 12px; text-align: left" th:text="${url}">http://localhost:6795/djWjrh/wjWjrh</code>
+</div>
+</body>
+</html>
