@@ -2,7 +2,6 @@ package com.jhkim.matzip.entities;
 
 import java.util.Date;
 import java.util.Objects;
-
 public class RecoverContactCodeEntity {
 
     private int index;

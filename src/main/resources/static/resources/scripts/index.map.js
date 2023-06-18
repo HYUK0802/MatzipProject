@@ -6,6 +6,9 @@ mapElement.init = (params) => {
         level: params.level
     });
     ['dragend', 'zoom_changed'].forEach(event => kakao.maps.event.addListener(mapElement.object, event, () => {
+        loadPlaces();
+
+
         const center = mapElement.object.getCenter();
         mapElement.savePosition({
             latitude: center.Ma,
@@ -13,9 +16,19 @@ mapElement.init = (params) => {
             level: mapElement.object.getLevel()
         });
         mapElement.geocoder.coord2Address(center.La, center.Ma, (result, status) => {
-            if (status === kakao.maps.services.Status.OK) {
-                listElement.addressGu.innerText = result[0]['address']['region_2depth_name'];
-                listElement.addressDong.innerText = result[0]['address']['region_3depth_name'];
+            if (status !== kakao.maps.services.Status.OK) {
+                addForm['addressPrimary'].value = '';
+                addForm['lat'].value = '';
+                addForm['lng'].value = '';
+                return;
+            }
+            listElement.addressGu.innerText = result[0]['address']['region_2depth_name'];
+            listElement.addressDong.innerText = result[0]['address']['region_3depth_name'];
+            if (addForm.classList.contains('visible')) {
+                addForm['addressPrimary'].value = result[0]['address']['address_name'];
+                addForm['lat'].value = center.Ma;
+                addForm['lng'].value = center.La;
+
             }
         });
     }));

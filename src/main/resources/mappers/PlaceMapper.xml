@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhkim.matzip.mappers.PlaceMapper">
+    <insert id="insertPlace"
+            useGeneratedKeys="true"
+            keyColumn="index"
+            keyProperty="index"
+            parameterType="com.jhkim.matzip.entities.PlaceEntity">
+        INSERT INTO `matzip`.`places` (`name`, `contact_first`, `contact_second`, `contact_third`, `description`, `latitude`, `longitude`, `address_primary`, `address_secondary`, `thumbnail`, `thumbnail_mime`, `time`, `registered_by`, `registered_at`, `deleted_flag`)
+VALUES (#{name},
+        #{contactFirst},
+        #{contactSecond},
+        #{contactThird},
+        #{description},
+        #{latitude},
+        #{longitude},
+        #{addressPrimary},
+        #{addressSecondary},
+        #{thumbnail},
+        #{thumbnailMime},
+        #{time},
+        #{registeredBy},
+        IFNULL(#{registeredAt}, DEFAULT(`registered_at`)),
+        #{isDeleted})
+    </insert>
+
+    <select id="selectPlaceByIndex"
+            resultType="com.jhkim.matzip.entities.PlaceEntity">
+        SELECT `index`             AS `index`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirst`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `description`       AS `description`,
+               `latitude`          AS `latitude`,
+               `longitude`         AS `longitude`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `thumbnail`         AS `thumbnail`,
+               `thumbnail_mime`    AS `thumbnailMime`,
+               `time`              AS `time`,
+               `registered_by`     AS `registeredBy`,
+               `registered_at`     AS `registeredAt`,
+               `deleted_flag`      AS `isDeleted`
+        FROM `matzip`.`places`
+        WHERE `index` = #{index}
+        LIMIT 1
+    </select>
+
+        <select id="selectPlacesInRangeNoThumbnail"
+                resultType="com.jhkim.matzip.entities.PlaceEntity"><![CDATA[
+            SELECT `index`             AS `index`,
+                   `name`              AS `name`,
+                   `contact_first`     AS `contactFirst`,
+                   `contact_second`    AS `contactSecond`,
+                   `contact_third`     AS `contactThird`,
+                   `description`       AS `description`,
+                   `latitude`          AS `latitude`,
+                   `longitude`         AS `longitude`,
+                   `address_primary`   AS `addressPrimary`,
+                   `address_secondary` AS `addressSecondary`,
+                   `time`              AS `time`,
+                   `registered_by`     AS `registeredBy`,
+                   `registered_at`     AS `registeredAt`,
+                   `deleted_flag`      AS `isDeleted`
+            FROM `matzip`.`places`
+            WHERE `latitude` >= #{minLat}
+              AND `latitude` <= #{maxLat}
+              AND `longitude` >= #{minLng}
+              AND `longitude` <= #{maxLng}
+            ]]></select>
+</mapper>

@@ -36,6 +36,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
+    // 전화번호 인증 코드
     public SendRegisterContactCodeResult sendRegisterContactCode(RegisterContactCodeEntity registerContactCode){
         if (registerContactCode == null ||
                 registerContactCode.getContact() == null ||
